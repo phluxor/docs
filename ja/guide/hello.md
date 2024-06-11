@@ -99,7 +99,15 @@ class HelloWorldActor implements ActorInterface
 `$system->root()->send()` メソッドを使ってメッセージを送信します。  
 
 ```php
-$system->root()->send($ref, new \PhluxorExample\Hello('World'));
+\Swoole\Coroutine\run(function () {
+    \Swoole\Coroutine\go(function () {
+        $system = \Phluxor\ActorSystem::create();
+        $ref = $system->root()->spawn(
+            \Phluxor\ActorSystem\Props::fromProducer(fn() => new \PhluxorExample\HelloWorldActor())
+        );
+        $system->root()->send($ref, new \Phluxor\Example\Hello('World'));
+    });
+});
 ```
 
 これで、`HelloWorldActor`が`Hello World`というメッセージを出力するアクターが作成されました。  
