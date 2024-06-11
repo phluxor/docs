@@ -100,4 +100,4 @@ $system->root()->send($ref, new \PhluxorExample\Hello('World'));
 
 これで、`HelloWorldActor`が`Hello World`というメッセージを出力するアクターが作成されました。  
 
-![Hello World](../../images/hello_world.png "Hello World")
+![Hello World](/images/hello_world.png "Hello World")

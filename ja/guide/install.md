@@ -14,4 +14,4 @@ PhluxorはWebアプリケーションやCLIアプリケーションなど、
 Webアプリケーションを作成する場合は、  
 SwooleのHTTPサーバー等を使ってWebアプリケーションを作成してください。  
 
-[Hello World >](ja/guide/hello.md)
+[Hello World >](/ja/guide/hello.md)
