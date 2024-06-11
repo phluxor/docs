@@ -37,7 +37,7 @@ class Hello
 }
 ```
 
-`Hello`クラスは、`message`プロパティを持つメッセージです。  
+`Hello`クラスは、`who`プロパティを持つメッセージです。  
 このメッセージを使って他のアクターに通信を行います。  
 
 ## アクターを作ろう
@@ -46,7 +46,7 @@ class Hello
 （アクターモデルではすべてはアクターであると考えます。）  
 
 ここでは、`HelloWorldActor`というアクターを作成します。  
-`Hello`メッセージを受信すると、`message`プロパティの値を出力します。  
+`Hello`メッセージを受信すると、`who`プロパティの値を出力します。  
 
 ```php
 namespace Phluxor\Examples;
