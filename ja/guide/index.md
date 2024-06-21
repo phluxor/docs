@@ -8,6 +8,5 @@
 
 ## What is Phluxor?
 
-- [What is Phluxor?](what/phluxor.md)
-- [組み込みメッセージについて](what/built-in-messages.md)
-
+- [What is Phluxor?](/ja/what/phluxor.md)
+- [組み込みメッセージについて](/ja/what/built-in-messages.md)
