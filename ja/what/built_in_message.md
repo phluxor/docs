@@ -27,7 +27,7 @@ MailboxがSuspended状態になります。
 ### Phluxor\ActorSystem\ProtoBuf\Watch
 
 アクターが他のアクターを監視するためのメッセージです。  
-Futureを利用する際に内部的に送信されます。　　
+Futureを利用する際に内部的に送信されます。  
 このメッセージを受信したアクターは、監視対象アクターの状態を監視し、  
 監視対象アクターが終了したときに `Phluxor\ActorSystem\ProtoBuf\Terminated` メッセージを受信します。  
 
