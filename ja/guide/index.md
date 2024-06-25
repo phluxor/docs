@@ -6,7 +6,8 @@
 - [インストール](install.md)
 - [Hello World](hello.md)
 
-## What is Phluxor?
+## Concepts
 
-- [What is Phluxor?](/ja/what/phluxor.html)
+- [設計原則](/ja/what/principles.html)
 - [組み込みメッセージについて](/ja/what/built_in_message.html)
+- [アクターライフサイクル](/ja/what/lifecycle.html)

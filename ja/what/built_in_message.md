@@ -39,3 +39,43 @@ Futureを利用する際に内部的に送信されます。
 アクターが他のアクターの監視を解除するためのメッセージです。  
 `Phluxor\ActorSystem\ProtoBuf\Watch` メッセージを受信したアクターが、  
 監視対象アクターの監視を解除するときに内部的に送信されます。  
+
+## Lifecycle
+
+### Phluxor\ActorSystem\ProtoBuf\PoisonPill
+
+アクターを終了し、メッセージ キューを停止するために使用されます。  
+アクターのMailboxにあるメッセージが処理されたあとにアクターを終了させます。  
+
+SystemMessageではなく、通常のメッセージとして送信されるため  
+受信順に処理されます。  
+
+### Phluxor\ActorSystem\Message\Restart
+
+アクターを再起動するためのメッセージです。  
+
+### Phluxor\ActorSystem\Message\Restarting
+
+アクター再起動中に送信されるメッセージです。  
+
+### Phluxor\ActorSystem\Message\Started
+
+アクターが開始されたときに送信されるメッセージです。  
+アクターをSpawnしたときに内部的に送信されます。  
+
+### Phluxor\ActorSystem\ProtoBuf\Stop
+
+Mailboxのユーザーメッセージ有無を問わず、  
+直ちにアクターを直ちに停止させるために利用します。  
+
+### Phluxor\ActorSystem\Message\Stopping
+
+アクター停止中を表すメッセージです。  
+
+### Phluxor\ActorSystem\Message\Stopped
+
+アクターが停止されたときに送信されるメッセージです。  
+
+### Phluxor\ActorSystem\ProtoBuf\Terminated
+
+監視対象アクターが終了したときに送信されるメッセージです。  
