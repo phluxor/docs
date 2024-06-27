@@ -10,4 +10,5 @@ It is designed to be flexible and easy to use, and it is built on top of the Swo
 Phluxorは、PHPでアクターモデルを構築するためのオープンソースツールキットです。  
 アクターモデルを柔軟で使いやすい設計になっており、Swoole拡張機能をベースに構築しています。  
 
-[Getting Started Guide](ja/guide/index.md)
+[Getting Started Guide](en/guide/index.md)  
+[日本語ガイド](ja/guide/index.md)  
