@@ -2,6 +2,8 @@
 
 The Props are a configuration object used to create an actor.  
 
+`Phluxor\ActorSystem\Props` is a class that creates a Props object.  
+
 ## Basic Usage
 
 ### fromProducer
@@ -67,7 +69,7 @@ Customization is not recommended unless you have sufficient knowledge of the act
 
 ```php
 Props::fromProducer(
-    fn() => new Fizz(),
+    fn() => new YourActor(),
     Props::withDispatcher(new ActorSystem\Dispatcher\SynchronizedDispatcher())
 );
 ```
@@ -77,7 +79,96 @@ this dispatcher is optimized for the Swoole extension.
 
 if you want to use the default dispatcher, you don't need to set it.  
 
-`ActorSystem\Dispatcher\SynchronizedDispatcher` is a dispatcher that processes messages synchronously.  
-this dispatcher is not optimized for the Swoole extension.  
-small resources are used, but performance is poor.  
+### withMailbox
 
+`withMailbox()` is a method that sets the mailbox for the Props object.  
+
+The mailbox is used to Queue messages for actors.  
+
+```php
+Props::fromProducer(
+    fn() => new YourActor(),
+    Props::withMailboxProducer(new ActorSystem\Mailbox\Unbounded())
+);
+```
+
+the default mailbox uses the `Phluxor\ActorSystem\Mailbox\Unbounded` class.  
+this mailbox is unbounded and can store an unlimited number of messages.  
+
+### withSupervisor
+
+`withSupervisor()` is a method that sets the supervisor for the Props object.
+the default strategy restarts child actors a maximum of 10 times within a 10 second window.
+
+```php
+
+Props::fromProducer(
+    fn() => new VoidActor(),
+    ActorSystem\Props::withSupervisor(
+        new ActorSystem\Strategy\OneForOneStrategy(
+            10,
+            new \DateInterval('PT10S'),
+            fn() => ActorSystem\Directive::Restart
+        )
+    )
+);
+```
+
+the default supervisor uses the `Phluxor\ActorSystem\Strategy\OneForOneStrategy` class.  
+
+if you want to use the default supervisor, you don't need to set it.  
+
+### withReceiverMiddleware
+
+receive middlewares are invoked before the actor receives the message.  
+
+```php
+
+Props::fromProducer(
+    fn() => new VoidActor(),
+    Props::withReceiverMiddleware(
+        $this->mockReceiverMiddleware(
+            function (ContextInterface $context, MessageEnvelope $messageEnvelope) {
+                if ($messageEnvelope->getMessage() === 'hello') {
+                    // logging and other processing
+                }
+            }
+        )
+    )
+);
+
+// example of mockReceiverMiddleware
+private function mockReceiverMiddleware(Closure|ReceiverFunctionInterface $next): Props\ReceiverMiddlewareInterface
+{
+    return new readonly class($next) implements Props\ReceiverMiddlewareInterface {
+
+        public function __construct(
+            private Closure|ReceiverFunctionInterface $next
+        ) {
+        }
+
+        public function __invoke(
+            Closure|ReceiverFunctionInterface $next
+        ): ReceiverFunctionInterface {
+            return new readonly class($this->next) implements ReceiverFunctionInterface {
+
+                public function __construct(
+                    private Closure|ReceiverFunctionInterface $next
+                ) {
+                }
+                
+                public function __invoke(
+                    ReceiverInterface|ContextInterface $context,
+                    MessageEnvelope $messageEnvelope
+                ): void {
+                    $next = $this->next;
+                    $next($context, $messageEnvelope);
+                }
+            };
+        }
+    };
+}
+```
+
+for example, you can use this to log messages or perform other processing.  
+or persistence middleware that saves event to a database.  
