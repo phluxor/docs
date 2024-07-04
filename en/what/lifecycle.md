@@ -1,4 +1,4 @@
-# Actor Lifecycle / アクターライフサイクル
+# Actor Lifecycle
 
 The actor lifecycle in Phluxor represents the sequence of events from the creation to the termination of an actor. 
 
