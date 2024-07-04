@@ -97,7 +97,8 @@ this mailbox is unbounded and can store an unlimited number of messages.
 
 ### withSupervisor
 
-`withSupervisor()` is a method that sets the supervisor for the Props object.
+`withSupervisor()` is a method that sets the supervisor for the Props object.  
+
 the default strategy restarts child actors a maximum of 10 times within a 10 second window.
 
 ```php
