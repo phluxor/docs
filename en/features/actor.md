@@ -15,7 +15,6 @@ Every actor has a unique address and communicates
 with other actors by sending messages using only the actor reference[Ref].  
 
 The `Phluxor\ActorSystem` class is the entry point for creating actors.  
-
 *required swoole extension*
 
 boot an actor system.  
