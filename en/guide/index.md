@@ -17,3 +17,4 @@
 - [Actor](/en/features/actor.html) - what is an actor?
 - [Props](/en/features/props.html) - what are props?
 - [Spawning Actors](/en/features/spawn_actors.html) - how to spawn actors?  
+- [Ref](/en/features/ref.html) - what is a ref?  
