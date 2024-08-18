@@ -18,3 +18,4 @@
 - [Props](/en/features/props.html) - what are props?
 - [Spawning Actors](/en/features/spawn_actors.html) - how to spawn actors?  
 - [Ref](/en/features/ref.html) - what is a ref?  
+- [Ref](/en/features/context.html) - what is a context?
