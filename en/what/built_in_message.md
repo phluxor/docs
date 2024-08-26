@@ -35,7 +35,7 @@ such as routers and supervisors, but it can also be used optionally.
 ### Phluxor\ActorSystem\ProtoBuf\Unwatch
 
 This message is sent to unwatch another actor.  
-It is sent internally by the actor that received the `Phluxor\ActorSystem\ProtoBuf\Watch` message when it stops monitoring the target actor. 
+It is sent internally by the actor that received the `Phluxor\ActorSystem\ProtoBuf\Watch` message when it stops monitoring the target actor.
 
 ## Lifecycle
 
