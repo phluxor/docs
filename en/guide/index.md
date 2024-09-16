@@ -19,3 +19,4 @@
 - [Spawning Actors](/en/features/spawn_actors.html) - how to spawn actors?  
 - [Ref](/en/features/ref.html) - what is a ref?  
 - [Context](/en/features/context.html) - what is a context?
+- [Mailbox](/en/features/mailbox.html) - How does the actor process messages?
