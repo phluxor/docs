@@ -112,3 +112,21 @@ For this reason, you can specify a bounded mailbox.
 
 When using a The bounded mailbox,  
 if the mailbox becomes full, new messages are forwarded to the dead letter queue.
+
+## Mailbox Instrumentation
+
+### Dispatchers and Invokers
+
+You can set two components in a mailbox: a dispatcher and an invoker.  
+When an actor is created, the invoker becomes the actor context,  
+and the dispatcher is generated from `Phluxor\ActorSystem\Props`.
+
+### Mailbox Invoker
+
+When the mailbox retrieves a message from the queue,  
+it passes the message to the registered invoker for processing.  
+In the case of an actor, the actor context accesses the message and processes it by invoking the actor's receive method.
+
+If an error occurs during message processing,  
+the mailbox escalates the error to the registered invoker,  
+which continues execution by performing actions such as restarting the actor.
