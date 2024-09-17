@@ -71,6 +71,8 @@ The flow of the actor lifecycle is as follows:
 
 Let's quickly understand the lifecycle through a simple application.
 
+[Sample code](https://github.com/ytake/phluxor-example/tree/main/lifecycle)
+
 First, we'll create a message that requests playing a movie.
 
 ```php
@@ -148,26 +150,21 @@ use PhluxorExample\PlaybackActor;
 
 use function Swoole\Coroutine\run;
 
-function main(): void
-{
-    run(function () {
-        \Swoole\Coroutine\go(function () {
-            $system = ActorSystem::create();
-            $ref = $system->root()->spawn(
-                ActorSystem\Props::fromProducer(
-                    fn() => new PlaybackActor()
-                )
-            );
-            $system->root()->send($ref, new PlayMovie('Transformers', 1));
-            $system->root()->send($ref, new PlayMovie('Transformers last knight', 2));
-            $system->root()->send($ref, new PlayMovie('Transformers age of extinction', 3));
-            $system->root()->send($ref, new PlayMovie('Transformers dark of the moon', 4));
-            $system->root()->send($ref, new PlayMovie('Transformers revenge of the fallen', 5));
-        });
+run(function () {
+    \Swoole\Coroutine\go(function () {
+        $system = ActorSystem::create();
+        $ref = $system->root()->spawn(
+            ActorSystem\Props::fromProducer(
+                fn() => new PlaybackActor()
+            )
+        );
+        $system->root()->send($ref, new PlayMovie('Transformers', 1));
+        $system->root()->send($ref, new PlayMovie('Transformers last knight', 2));
+        $system->root()->send($ref, new PlayMovie('Transformers age of extinction', 3));
+        $system->root()->send($ref, new PlayMovie('Transformers dark of the moon', 4));
+        $system->root()->send($ref, new PlayMovie('Transformers revenge of the fallen', 5));
     });
-}
-
-main();
+});
 ```
 
 Please confirm that the movie titles and user IDs are output to the log.
@@ -344,29 +341,24 @@ use PhluxorExample\PlaybackActor;
 
 use function Swoole\Coroutine\run;
 
-function main(): void
-{
-    run(function () {
-        \Swoole\Coroutine\go(function () {
-            $system = ActorSystem::create();
-            $ref = $system->root()->spawn(
-                ActorSystem\Props::fromProducer(
-                    fn() => new PlaybackActor()
-                )
-            );
-            $system->root()->send($ref, new PlayMovie('Transformers', 1));
-            $system->root()->send($ref, new PlayMovie('Transformers last knight', 2));
-            $system->root()->send($ref, new PlayMovie('Transformers age of extinction', 3));
-            $system->root()->send($ref, new PlayMovie('Transformers dark of the moon', 4));
-            $system->root()->send($ref, new PlayMovie('Transformers revenge of the fallen', 5));
-            $system->getLogger()->info('restarting actor');
-            $system->root()->send($ref, new Recover());
-            $system->root()->send($ref, new PlayMovie('Transformers One', 6));
-        });
+run(function () {
+    \Swoole\Coroutine\go(function () {
+        $system = ActorSystem::create();
+        $ref = $system->root()->spawn(
+            ActorSystem\Props::fromProducer(
+                fn() => new PlaybackActor()
+            )
+        );
+        $system->root()->send($ref, new PlayMovie('Transformers', 1));
+        $system->root()->send($ref, new PlayMovie('Transformers last knight', 2));
+        $system->root()->send($ref, new PlayMovie('Transformers age of extinction', 3));
+        $system->root()->send($ref, new PlayMovie('Transformers dark of the moon', 4));
+        $system->root()->send($ref, new PlayMovie('Transformers revenge of the fallen', 5));
+        $system->getLogger()->info('restarting actor');
+        $system->root()->send($ref, new Recover());
+        $system->root()->send($ref, new PlayMovie('Transformers One', 6));
     });
-}
-
-main();
+});
 ```
 
 Please confirm that the child actor has crashed and restarted, and that this has been logged.
@@ -448,38 +440,33 @@ use PhluxorExample\PlaybackActor;
 
 use function Swoole\Coroutine\run;
 
-function main(): void
-{
-    run(function () {
-        \Swoole\Coroutine\go(function () {
-            $system = ActorSystem::create();
-            $ref = $system->root()->spawn(
-                ActorSystem\Props::fromProducer(
-                    fn() => new PlaybackActor()
-                )
-            );
-            $system->root()->send($ref, new PlayMovie('Transformers', 1));
-            $system->root()->send($ref, new PlayMovie('Transformers last knight', 2));
-            $system->root()->send($ref, new PlayMovie('Transformers age of extinction', 3));
-            $system->root()->send($ref, new PlayMovie('Transformers dark of the moon', 4));
-            $system->root()->send($ref, new PlayMovie('Transformers revenge of the fallen', 5));
-            $system->getLogger()->info('restarting actor');
-            $system->root()->send($ref, new Recover());
-            $system->root()->send($ref, new PlayMovie('Transformers One', 6));
-            $system->root()->send($ref, new PlayMovie('Transformers The Movie', 7));
-            $system->getLogger()->info('stopping actor');
-            $system->root()->poison($ref);
-        });
+run(function () {
+    \Swoole\Coroutine\go(function () {
+        $system = ActorSystem::create();
+        $ref = $system->root()->spawn(
+            ActorSystem\Props::fromProducer(
+                fn() => new PlaybackActor()
+            )
+        );
+        $system->root()->send($ref, new PlayMovie('Transformers', 1));
+        $system->root()->send($ref, new PlayMovie('Transformers last knight', 2));
+        $system->root()->send($ref, new PlayMovie('Transformers age of extinction', 3));
+        $system->root()->send($ref, new PlayMovie('Transformers dark of the moon', 4));
+        $system->root()->send($ref, new PlayMovie('Transformers revenge of the fallen', 5));
+        $system->getLogger()->info('restarting actor');
+        $system->root()->send($ref, new Recover());
+        $system->root()->send($ref, new PlayMovie('Transformers One', 6));
+        $system->root()->send($ref, new PlayMovie('Transformers The Movie', 7));
+        $system->getLogger()->info('stopping actor');
+        $system->root()->poison($ref);
     });
-}
-
-main();
+});
 ```
 
 Please confirm that when the actor stops, `PlaybackActor stopping` is output to the log.
 
 Also, confirm that the child actor restarting is logged.
 
-![demo1](/images/lifecycle/demo1.png "Demo1")
+![demo1](/images/lifecycle/lifecycle_demo1.png "Demo1")
 
-![demo2](/images/lifecycle/demo2.png "Demo2")
+![demo2](/images/lifecycle/lifecycle_demo2.png "Demo2")
