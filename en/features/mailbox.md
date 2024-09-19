@@ -130,3 +130,38 @@ In the case of an actor, the actor context accesses the message and processes it
 If an error occurs during message processing,  
 the mailbox escalates the error to the registered invoker,  
 which continues execution by performing actions such as restarting the actor.
+
+### Mailbox Dispatchers
+
+When a message is delivered to the mailbox, the dispatcher schedules the processing of messages in the mailbox queue.
+
+The default dispatcher processes messages via `Phluxor\ActorSystem\Dispatcher\CoroutineDispatcher`,  
+which uses Swoole's coroutines.
+
+In addition,  
+there's `Phluxor\ActorSystem\Dispatcher\SynchronizedDispatcher`,  
+which does not use coroutines. You can use a synchronous dispatcher in situations where,  
+for example, actors might consume a large amount of resources under high load.
+
+You can change the dispatcher by using `Phluxor\ActorSystem\Props` when creating an actor.
+
+Here's how to make the change:
+
+```php
+use Phluxor\ActorSystem\Dispatcher\SynchronizedDispatcher;
+use Phluxor\ActorSystem\Props;
+
+Props::fromProducer(fn() => new YourActor(),
+    Props::withDispatcher(new SynchronizedDispatcher(300))
+);
+```
+
+## Note
+
+Developers can implement and use their own custom dispatchers,  
+but please consider this only in special cases.
+
+To use dispatchers correctly,  
+it is essential to have a certain level of understanding of actor-related behaviors, including Phluxor's mailbox.
+
+Custom dispatchers are not necessarily an effective method for addressing performance issues.

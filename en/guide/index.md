@@ -20,3 +20,11 @@
 - [Ref](/en/features/ref.html) - what is a ref?  
 - [Context](/en/features/context.html) - what is a context?
 - [Mailbox](/en/features/mailbox.html) - How does the actor process messages?
+- [Dead Letter](/en/features/deadletter.html) - What happens to lost messages?
+
+## Phluxor Training
+
+Soon.  
+
+- Implementation Saga Pattern
+- Scatter and Gather
