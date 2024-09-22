@@ -11,7 +11,6 @@ Whether local or remote, you can send messages to actors through Refs.
 
 `Phluxor\ActorSystem\Ref` to reference an actor.  
 
-
 ## Overview
 
 in Phluxor, actors communicate with each other by sending messages.  
@@ -125,6 +124,7 @@ Send is a non-blocking, fire-and-forget method for sending a message to an actor
                 // send a message to the actor
                 $context->send($ref, new PrepareTest(['subject' => $msg->getSubject()]));
                 break;
+        }
     }
 ```
 
@@ -151,5 +151,6 @@ Only use it when request/reply communication is required between two actors.
                 // request a message to the actor
                 $context->request($ref, new PrepareTest(['subject' => $msg->getSubject()]));
                 break;
+        }
     }
 ```

@@ -15,7 +15,8 @@ Dead letters are primarily used for debugging purposes.
 
 In particular, if messages cannot be sent to or received by an actor, you can check whether you are sending them incorrectly.
 
-If an excessive number of dead letters occur, you should verify whether you have a proper understanding of [the actor's lifecycle](/en/what/lifecycle.html), whether your implementation of stopping actors is correct, or if you're continually sending unnecessary messages to non-existent actors.
+If an excessive number of dead letters occur, you should verify whether you have a proper understanding of [the actor's lifecycle](/en/what/lifecycle.html),  
+whether your implementation of stopping actors is correct, or if you're continually sending unnecessary messages to non-existent actors.
 
 ## How do I Receive Dead Letters?
 
@@ -28,3 +29,33 @@ Since dead letters are not delivered over the network, please create an actor th
 ### Note
 
 That it is not recommended to implement processing that subscribes to and relies on messages flowing into the dead letter queue as a trusted source of information.
+
+## Usage
+
+```php
+use Phluxor\ActorSystem;
+
+$system = ActorSystem::create();
+$system->getEventStream()?->subscribe(function (mixed $event): void {
+    if ($event instanceof ActorSystem\DeadLetterEvent) {
+        // do something with dead letter
+    }
+});
+```
+
+or child actor can also subscribe to dead letters.
+
+```php
+use Phluxor\ActorSystem;
+
+// 
+
+public function receive(ContextInterface $context): void
+{
+    $context->getEventStream()?->subscribe(function (mixed $event): void {
+        if ($event instanceof ActorSystem\DeadLetterEvent) {
+            // do something with dead letter
+        }
+    });
+}
+```

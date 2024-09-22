@@ -21,6 +21,7 @@
 - [Context](/en/features/context.html) - what is a context?
 - [Mailbox](/en/features/mailbox.html) - How does the actor process messages?
 - [Dead Letter](/en/features/deadletter.html) - What happens to lost messages?
+- [Future](/en/features/future.html) - How to get the result of an actor's processing?
 
 ## Phluxor Training
 
