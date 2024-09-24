@@ -111,7 +111,7 @@ it may lead to memory shortages and potential instability.
 For this reason, you can specify a bounded mailbox.  
 
 When using a The bounded mailbox,  
-if the mailbox becomes full, new messages are forwarded to the dead letter queue.
+if the mailbox becomes full, new messages are forwarded to the [DeadLetter](/en/features/deadletter.html) queue.
 
 ## Mailbox Instrumentation
 

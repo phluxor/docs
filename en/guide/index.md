@@ -20,7 +20,8 @@
 - [Ref](/en/features/ref.html) - what is a ref?  
 - [Context](/en/features/context.html) - what is a context?
 - [Mailbox](/en/features/mailbox.html) - How does the actor process messages?
-- [Dead Letter](/en/features/deadletter.html) - What happens to lost messages?
+- [DeadLetter](/en/features/deadletter.html) - What happens to lost messages?
+- [Timeout](/en/features/timeout_reciving_message.html) - How to set a timeout for receiving messages?
 - [Future](/en/features/future.html) - How to get the result of an actor's processing?
 
 ## Phluxor Training
