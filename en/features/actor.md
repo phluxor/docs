@@ -52,4 +52,15 @@ interface ActorInterface
 
 ```
 
-The `ContextInterface` interface provides access to the actor's mailbox,  
+The `ContextInterface` interface provides access to the actor's mailbox.  
+
+The context also provides access to the actor system, as well as information such as the actor's own address,  
+parent actor details, child actor details, and supervisor strategy.
+
+Please note that actors do not have a return value and always return void.
+
+Since all actors operate asynchronously and concurrently, they cannot have return values.
+
+Actors communicate with other actors through asynchronous message passing,
+
+so you cannot directly call or manipulate an actor.

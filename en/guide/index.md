@@ -31,7 +31,7 @@
     - Random - random routing
     - Broadcast - broadcast routing
     - ConsistentHash - consistent hash routing
-- EventStream - How to publish and subscribe to events?
+- [EventStream](/en/features/eventstream.html) - How to publish and subscribe to events?
 - Persistence - How do I persist actor state?
     - MySQL Provider - How to persist actor state in MySQL?
     - PostgreSQL Provider - How to persist actor state in PostgreSQL?

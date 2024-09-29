@@ -11,3 +11,7 @@
 - [設計原則](/ja/what/principles.html)
 - [組み込みメッセージについて](/ja/what/built_in_message.html)
 - [アクターライフサイクル](/ja/what/lifecycle.html)
+
+## Features
+
+- [アクター](/ja/features/actor.html) - アクターとは？
