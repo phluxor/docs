@@ -289,7 +289,7 @@ run(function () {
 
 ![output](/images/behaviors/sample.png "output")
 
-## General Message Handling (Without Behavior Change)
+## General Message Handling
 
 現在の動作に関係なく、特定のメッセージを処理したい場合があります。
 

@@ -288,7 +288,7 @@ The output will be as follows.
 
 ![output](/images/behaviors/sample.png "output")
 
-## General Message Handling (Without Behavior Change)
+## General Message Handling
 
 There may be cases where you want to process certain messages regardless of the current behavior.
 
