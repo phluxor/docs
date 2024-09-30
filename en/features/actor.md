@@ -1,6 +1,6 @@
 # Actors
 
-Actors are the basic unit of the actor model.  
+Actors are the basic unit of the actor model.
 
 An actor is an object that encapsulates state and behavior,  
 Mailbox for receiving messages,  

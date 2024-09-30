@@ -14,4 +14,34 @@
 
 ## Features
 
-- [アクター](/ja/features/actor.html) - アクターとは？
+- [Actor](/ja/features/actor.html) - アクターとは？
+- Props - アクターの設定方法って？
+- Spawning Actors - アクターの生成方法は？
+- Ref - リファレンスって何？あくたーのアドレス？
+- Context - コンテキストって何？
+- Mailbox - アクターはメッセージをどう処理する？
+- DeadLetter - 失われたメッセージはどうなる？
+- Timeout - メッセージの受信タイムアウトを設定する方法は？
+- Future - アクターの処理結果を取得する方法は？
+- [Behavior](/ja/features/behavior.html) - アクターの状態を変更する方法は？
+- Middleware - ミドルウェアって何？
+- Reentrancy - 再入処理をどう扱う？
+- Router - メッセージをアクターにどうルーティングする？
+    - RoundRobin - ラウンドロビンルーティング
+    - Random - ランダムルーティング
+    - Broadcast - ブロードキャストルーティング
+    - ConsistentHash - 一貫性ハッシュルーティング
+- EventStream - イベントの発行と購読方法は？
+- Persistence - アクターの状態をどう永続化する？
+    - MySQL Provider - MySQLでアクターの状態を永続化する方法は？
+    - PostgreSQL Provider - PostgreSQLでアクターの状態を永続化する方法は？
+    - DynamoDB Provider - DynamoDBでアクターの状態を永続化する方法は？
+- Remoting - 他のアクターシステムのアクターとどう通信する？
+
+## Phluxor Training
+
+Soon.  
+
+- サーガパターンの実装
+- スキャッターアンドギャザーの実装
+- CQRS/ESの実装
