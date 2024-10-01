@@ -15,7 +15,7 @@
 ## Features
 
 - [Actor](/ja/features/actor.html) - アクターとは？
-- Props - アクターの設定方法って？
+- [Props](/ja/features/props.html) - アクターの設定方法って？
 - Spawning Actors - アクターの生成方法は？
 - Ref - リファレンスって何？あくたーのアドレス？
 - Context - コンテキストって何？
