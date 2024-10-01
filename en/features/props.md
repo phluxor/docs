@@ -171,5 +171,8 @@ private function mockReceiverMiddleware(Closure|ReceiverFunctionInterface $next)
 }
 ```
 
-for example, you can use this to log messages or perform other processing.  
-or persistence middleware that saves event to a database.  
+For example, you can log messages or execute other processes.
+
+It can also be used as a persistence middleware to save events in a database.
+
+If you are implementing CQRS/ES, it is recommended to use persistence middleware.
