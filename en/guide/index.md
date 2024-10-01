@@ -23,7 +23,7 @@
 - [DeadLetter](/en/features/deadletter.html) - What happens to lost messages?
 - [Timeout](/en/features/timeout_reciving_message.html) - How to set a timeout for receiving messages?
 - [Future](/en/features/future.html) - How to get the result of an actor's processing?
-- Behavior - How to change the state of an actor?
+- [Behavior](/en/features/behavior.html) - How to change the state of an actor?
 - Middleware - What is middleware?
 - Reentrancy - How to handle reentrancy?
 - Router - How to route messages to actors?
