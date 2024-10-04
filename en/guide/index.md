@@ -8,9 +8,10 @@
 
 ## Concepts
 
-- [principles](/en/what/principles.html)
-- [built in messages](/en/what/built_in_message.html)
-- [actor lifecycle](/en/what/lifecycle.html)
+- [Principles](/en/what/principles.html)
+- [Built in Messages](/en/what/built_in_message.html)
+- [Actor Lifecycle](/en/what/lifecycle.html)
+- [Supervision](/en/what/supervision.html)
 
 ## Features
 

@@ -11,12 +11,13 @@
 - [設計原則](/ja/what/principles.html)
 - [組み込みメッセージについて](/ja/what/built_in_message.html)
 - [アクターライフサイクル](/ja/what/lifecycle.html)
+- [Supervision](/ja/what/supervision.html)
 
 ## Features
 
 - [Actor](/ja/features/actor.html) - アクターとは？
 - [Props](/ja/features/props.html) - アクターの設定方法って？
-- Spawning Actors - アクターの生成方法は？
+- [Spawning Actors](/ja/features/spawn_actors.html) - アクターの生成方法は？
 - Ref - リファレンスって何？あくたーのアドレス？
 - Context - コンテキストって何？
 - Mailbox - アクターはメッセージをどう処理する？

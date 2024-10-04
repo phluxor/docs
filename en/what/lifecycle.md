@@ -19,7 +19,7 @@ Calling the stop method on a `Phluxor\ActorSystem\ActorContext` instance.
 If an actor fails to process a message,  
 the actor's mailbox is temporarily paused to stop processing.
 
-This failure is escalated to other actors or the parent actor supervising the failed actor (see supervision).  
+This failure is escalated to other actors or the parent actor supervising the failed actor (see [supervision](/en/what/supervision.html)).  
 Depending on the instructions decided by the supervisor,  
 the actor may automatically resume, restart, or stop.
 
