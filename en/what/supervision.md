@@ -327,7 +327,7 @@ Once the actor has stabilized after a restart, it will resume receiving messages
 However, note that it will not reprocess the message that was being handled when the Exception was thrown,  
 so you will need to resend the message from the parent actor.
 
-## OneForOneStrategy と AllForOneStrategy
+## OneForOneStrategy and AllForOneStrategy
 
 `OneForOneStrategy` and `AllForOneStrategy` are strategies used to specify how the supervisor responds to child actor failures.
 
