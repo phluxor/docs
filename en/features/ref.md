@@ -79,16 +79,18 @@ class YourActor implements ActorInterface
 
 ## Create Manually
 
-`Phluxor\ActorSystem\Ref` can be created manually.  
+`Phluxor\ActorSystem\Ref` can also be created manually.
 
-It is meant to act as an actor identifier,  
-so there is no harm in manually creating and using it as long as the name is appropriate.  
+Since it is intended to function as an identifier for the actor,  
+there is no problem with creating and using it manually as long as the name is appropriate.
 
-Ref is created with a `Phluxor\ActorSystem\ProtoBuf\Pid` object.  
-make sure to set the `address` to `ActorSystem::LOCAL_ADDRESS`.  
+The `Ref` is created internally using a `Phluxor\ActorSystem\ProtoBuf\Pid` object.
 
-because the address is used to determine whether the actor is local or remote.  
-if the address is not `ActorSystem::LOCAL_ADDRESS`, the actor is considered remote.  
+There are a few rules to follow when creating it manually,  
+but for actors that are configured locally, set the `address` to `ActorSystem::LOCAL_ADDRESS`.
+
+This address is used to determine whether the actor is local or remote.  
+If the address is not `ActorSystem::LOCAL_ADDRESS`, the actor will be considered remote internally.
 
 ```php
 use Phluxor\ActorSystem;
@@ -106,7 +108,7 @@ so you can convert it to a string and output the address.
 
 ## Send Message
 
-Send is a non-blocking, fire-and-forget method for sending a message to an actor. 
+`send` is a non-blocking, fire-and-forget method for sending a message to an actor.
 
 ```php
     public function receive(ContextInterface $context): void

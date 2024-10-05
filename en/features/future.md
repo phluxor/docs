@@ -56,13 +56,13 @@ we provide a mechanism that notifies you when the result becomes available witho
 
 ## Usage
 
-The way Futures are used is similar to request and send.
+The usage of Future is similar to request and send.
 
-A Future sends messages using `requestFuture`.
+When using a Future in Phluxor, you simply send a message using `requestFuture`.
 
-At this point, the Ref of the Future is included so that the receiving actor can reply to the sender.
+At this point, the `Ref` of the Future is embedded so that the receiving actor can reply to the sender.
 
-A Future object uses `wait()` or `result()` to wait until a response arrives or the execution times out.
+The Future object uses `wait()` or `result()` to wait until the response arrives or the execution times out.
 
 ```php
 $system = ActorSystem::create();

@@ -18,13 +18,14 @@
 - [Actor](/ja/features/actor.html) - アクターとは？
 - [Props](/ja/features/props.html) - アクターの設定方法って？
 - [Spawning Actors](/ja/features/spawn_actors.html) - アクターの生成方法は？
-- Ref - リファレンスって何？あくたーのアドレス？
+- [Ref](/ja/features/ref.html) - リファレンスって何？あくたーのアドレス？
 - Context - コンテキストって何？
 - Mailbox - アクターはメッセージをどう処理する？
 - DeadLetter - 失われたメッセージはどうなる？
 - Timeout - メッセージの受信タイムアウトを設定する方法は？
-- Future - アクターの処理結果を取得する方法は？
+- [Future](/ja/features/future.html) - アクターの処理結果を取得する方法は？
 - [Behavior](/ja/features/behavior.html) - アクターの状態を変更する方法は？
+- Typed Channel - 型付きチャネルって何？
 - Middleware - ミドルウェアって何？
 - Reentrancy - 再入処理をどう扱う？
 - Router - メッセージをアクターにどうルーティングする？
