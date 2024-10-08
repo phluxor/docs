@@ -10,7 +10,7 @@
 
 - [設計原則](/ja/what/principles.html)
 - [組み込みメッセージについて](/ja/what/built_in_message.html)
-- [アクターライフサイクル](/ja/what/lifecycle.html)
+- [アクターのライフサイクル](/ja/what/lifecycle.html)
 - [Supervision](/ja/what/supervision.html)
 
 ## Features
@@ -19,9 +19,9 @@
 - [Props](/ja/features/props.html) - アクターの設定方法って？
 - [Spawning Actors](/ja/features/spawn_actors.html) - アクターの生成方法は？
 - [Ref](/ja/features/ref.html) - リファレンスって何？あくたーのアドレス？
-- Context - コンテキストって何？
+- [Context](/ja/features/context.html) - コンテキストって何？
 - Mailbox - アクターはメッセージをどう処理する？
-- DeadLetter - 失われたメッセージはどうなる？
+- [DeadLetter](/ja/features/deadletter.html) - 失われたメッセージはどうなる？
 - Timeout - メッセージの受信タイムアウトを設定する方法は？
 - [Future](/ja/features/future.html) - アクターの処理結果を取得する方法は？
 - [Behavior](/ja/features/behavior.html) - アクターの状態を変更する方法は？
