@@ -26,7 +26,7 @@
 - [Future](/en/features/future.html) - How to get the result of an actor's processing?
 - [Behavior](/en/features/behavior.html) - How to change the state of an actor?
 - Typed Channel - How to use typed channels?
-- Middleware - What is middleware?
+- [Middleware](/en/features/middleware.html) - What is middleware?
 - Reentrancy - How to handle reentrancy?
 - Router - How to route messages to actors?
     - RoundRobin - round robin routing

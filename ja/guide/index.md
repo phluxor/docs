@@ -26,7 +26,7 @@
 - [Future](/ja/features/future.html) - アクターの処理結果を取得する方法は？
 - [Behavior](/ja/features/behavior.html) - アクターの状態を変更する方法は？
 - Typed Channel - 型付きチャネルって何？
-- Middleware - ミドルウェアって何？
+- [Middleware](/ja/features/middleware.html) - ミドルウェアって何？
 - Reentrancy - 再入処理をどう扱う？
 - Router - メッセージをアクターにどうルーティングする？
     - RoundRobin - ラウンドロビンルーティング
