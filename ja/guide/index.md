@@ -20,7 +20,7 @@
 - [Spawning Actors](/ja/features/spawn_actors.html) - アクターの生成方法は？
 - [Ref](/ja/features/ref.html) - リファレンスって何？あくたーのアドレス？
 - [Context](/ja/features/context.html) - コンテキストって何？
-- Mailbox - アクターはメッセージをどう処理する？
+- [Mailbox](/ja/features/mailbox.html) - アクターはメッセージをどう処理する？
 - [DeadLetter](/ja/features/deadletter.html) - 失われたメッセージはどうなる？
 - Timeout - メッセージの受信タイムアウトを設定する方法は？
 - [Future](/ja/features/future.html) - アクターの処理結果を取得する方法は？

@@ -1,35 +1,36 @@
 # Mailbox
 
-Actors can interact only through messages.
+アクターはメッセージを通じてのみ相互作用します。
 
-These messages are not sent directly to the actor but are sent to the mailbox that each actor possesses.  
-When the actor becomes ready to process them,  
-the messages are pushed to the actor.
+これらのメッセージはアクターに直接送られるのではなく、各アクターが持つメールボックスに送信されます。  
+アクターがメッセージを処理する準備が整うと、  
+メールボックスからメッセージがアクターにプッシュされます。
 
-The default mailbox consists of two message queues: system messages and user messages.  
-System messages are used internally by the system—for example,  
-to suspend or resume the mailbox in case of a crash—and are also used for managing each actor (starting, stopping, restarting, etc.).  
-User messages can be freely used by developers.  
-These messages can be accessed from the actor context.
+デフォルトのメールボックスは、システムメッセージとユーザーメッセージの2つのメッセージキューで構成されています。  
+システムメッセージはシステム内部で使用され、たとえばクラッシュ時のメールボックスの一時停止や再開、  
+また各アクターの管理（開始、停止、再起動など）にも使用されます。  
 
-Messages in the mailbox are generally delivered in FIFO order,  
-but system messages are given priority and processed before user messages.
+ユーザーメッセージは開発者が自由に使用できるメッセージです。  
+これらのメッセージはアクターコンテキストからアクセスできます。
 
-The following rules apply to an actor's mailbox:
+メールボックス内のメッセージは一般的にFIFO（先入れ先出し）順で配信されますが、  
+システムメッセージが優先され、ユーザーメッセージの前に処理されます。
 
-- Sending messages can be performed simultaneously by multiple producers (MPSC: multi-producer, single-consumer).
+アクターのメールボックスには次のルールが適用されます:
 
-- Receiving messages is done sequentially for each actor. Different rules can optionally be applied to special mailboxes like system messages.
+- メッセージ送信は複数のプロデューサーによって同時に行うことができます（MPSC: マルチプロデューサー、シングルコンシューマー）。
 
-- Mailboxes cannot be shared between actors. They are not shared internally either.
+- メッセージ受信は各アクターに対して順番に行われます。システムメッセージのような特別なメールボックスには異なるルールを適用することも可能です。
 
-Since the default mailbox is unlimited,  
-you can specify an arbitrary enqueue limit on the mailbox to adjust throughput and other factors.
+- メールボックスはアクター間で共有できません。内部的にも共有されません。
+
+デフォルトのメールボックスは無制限なので、  
+スループットなどの調整のためにメールボックスのキューに任意の制限を指定できます。
 
 ## Changing the Mailbox
 
-To use a specific mailbox implementation, you can customize the `Phluxor\ActorSystem\Props`.  
-you can also use the `Phluxor\ActorSystem\Props::withMailboxProducer` method.
+特定のメールボックス実装を使用するには、`Phluxor\ActorSystem\Props` を使ってカスタマイズできます。  
+その場合は`Phluxor\ActorSystem\Props::withMailboxProducer` メソッドを使用して指定します。
 
 ```php
 Props::fromProducer(fn() => new YourActor(),
@@ -37,7 +38,7 @@ Props::fromProducer(fn() => new YourActor(),
 );
 ```
 
-you can also implement the `Phluxor\ActorSystem\Mailbox\MailboxProducerInterface` interface.
+`Phluxor\ActorSystem\Mailbox\MailboxProducerInterface` インターフェイスを実装することもできます。
 
 ```php
 <?php
@@ -55,7 +56,7 @@ interface MailboxProducerInterface
 }
 ```
 
-Mailbox implementations must implement the `Phluxor\ActorSystem\Mailbox\MailboxInterface` interface.
+独自のMailboxを利用したい場合は `Phluxor\ActorSystem\Mailbox\MailboxInterface`インターフェイスを実装します。
 
 ```php
 <?php
@@ -104,48 +105,47 @@ interface MailboxInterface
 
 ## Unbounded Mailbox
 
-The unbounded mailbox is a convenient default option available for use.  
+無制限のメールボックスは、便利なデフォルトオプションとして利用できます。  
 
-However, if a large number of messages are added to the mailbox faster than the actor can process them,  
-it may lead to memory shortages and potential instability.  
-For this reason, you can specify a bounded mailbox.  
+しかし、アクターがメッセージを処理する速度よりも速く大量のメッセージがメールボックスに追加されると、  
+メモリ不足や不安定な動作を引き起こす可能性があります。  
+そのため、制限付きのメールボックスを指定できます。  
 
-When using a The bounded mailbox,  
-if the mailbox becomes full, new messages are forwarded to the [DeadLetter](/en/features/deadletter.html) queue.
+制限付きメールボックスを使用する場合、  
+メールボックスがいっぱいになると新しいメッセージは[DeadLetter](/ja/features/deadletter.html)キューに転送されます。
 
 ## Mailbox Instrumentation
 
 ### Dispatchers and Invokers
 
-You can set two components in a mailbox: a dispatcher and an invoker.  
-When an actor is created, the invoker becomes the actor context,  
-and the dispatcher is generated from `Phluxor\ActorSystem\Props`.
+メールボックスには、DispatcherとInvokerの2つのコンポーネントを設定できます。  
+アクターが作成されると、Invokerがアクターコンテキストとなり、  
+Dispatcherは `Phluxor\ActorSystem\Props` から生成されます。
 
 ### Mailbox Invoker
 
-When the mailbox retrieves a message from the queue,  
-it passes the message to the registered invoker for processing.  
-In the case of an actor, the actor context accesses the message and processes it by invoking the actor's receive method.
+メールボックスがキューからメッセージを取得すると、  
+そのメッセージを登録されたInvokerに渡して処理します。  
+アクターの場合、アクターコンテキストがメッセージにアクセスし、アクターの`receive`メソッドを呼び出して処理を行います。
 
-If an error occurs during message processing,  
-the mailbox escalates the error to the registered invoker,  
-which continues execution by performing actions such as restarting the actor.
+メッセージ処理中にエラーが発生した場合、  
+メールボックスはエラーを登録されたInvokerにエスカレートし、  
+Invokerはアクターの再起動などの処理を実行しながら処理を続行します。
 
 ### Mailbox Dispatchers
 
-When a message is delivered to the mailbox, the dispatcher schedules the processing of messages in the mailbox queue.
+メッセージがメールボックスに配信されると、Dispatcherがメールボックスキュー内のメッセージ処理をスケジュールします。
 
-The default dispatcher processes messages via `Phluxor\ActorSystem\Dispatcher\CoroutineDispatcher`,  
-which uses Swoole's coroutines.
+デフォルトのDispatcherは、  
+Swooleのコルーチンを使用する `Phluxor\ActorSystem\Dispatcher\CoroutineDispatcher` を介してメッセージを処理します。
 
-In addition,  
-there's `Phluxor\ActorSystem\Dispatcher\SynchronizedDispatcher`,  
-which does not use coroutines. You can use a synchronous dispatcher in situations where,  
-for example, actors might consume a large amount of resources under high load.
+さらに、コルーチンを使用しない `Phluxor\ActorSystem\Dispatcher\SynchronizedDispatcher` もあります。  
 
-You can change the dispatcher by using `Phluxor\ActorSystem\Props` when creating an actor.
+たとえば、アクターが高負荷で大量のリソースを消費する場合などは同期ディスパッチャーを使用できます。
 
-Here's how to make the change:
+変更する場合はアクターの作成時に `Phluxor\ActorSystem\Props` を使用してディスパッチャーを指定します。
+
+変更方法は以下の通りです:
 
 ```php
 use Phluxor\ActorSystem\Dispatcher\SynchronizedDispatcher;
@@ -158,10 +158,10 @@ Props::fromProducer(fn() => new YourActor(),
 
 ## Note
 
-Developers can implement and use their own custom dispatchers,  
-but please consider this only in special cases.
+開発者は独自のカスタムディスパッチャーを実装して使用できますが、  
+これは特別なケースに限り検討してください。
 
-To use dispatchers correctly,  
-it is essential to have a certain level of understanding of actor-related behaviors, including Phluxor's mailbox.
+ディスパッチャーを正しく使用するためには、  
+Phluxorのメールボックスを含むアクター関連の動作について一定の理解が不可欠です。
 
-Custom dispatchers are not necessarily an effective method for addressing performance issues.
+カスタムディスパッチャーは、必ずしもパフォーマンス問題を解決するための有効な手段ではありません。
