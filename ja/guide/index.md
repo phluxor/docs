@@ -22,18 +22,18 @@
 - [Context](/ja/features/context.html) - コンテキストって何？
 - [Mailbox](/ja/features/mailbox.html) - アクターはメッセージをどう処理する？
 - [DeadLetter](/ja/features/deadletter.html) - 失われたメッセージはどうなる？
-- Timeout - メッセージの受信タイムアウトを設定する方法は？
+- [Timeout](/ja/features/timeout_reciving_message.html) - メッセージの受信タイムアウトを設定する方法は？
 - [Future](/ja/features/future.html) - アクターの処理結果を取得する方法は？
 - [Behavior](/ja/features/behavior.html) - アクターの状態を変更する方法は？
 - Typed Channel - 型付きチャネルって何？
 - [Middleware](/ja/features/middleware.html) - ミドルウェアって何？
 - Reentrancy - 再入処理をどう扱う？
-- Router - メッセージをアクターにどうルーティングする？
+- [Router](/ja/features/router.html) - メッセージをアクターにどうルーティングする？
     - RoundRobin - ラウンドロビンルーティング
     - Random - ランダムルーティング
     - Broadcast - ブロードキャストルーティング
     - ConsistentHash - 一貫性ハッシュルーティング
-- EventStream - イベントの発行と購読方法は？
+- [EventStream](/ja/features/eventstream.html) - イベントの発行と購読方法は？
 - Persistence - アクターの状態をどう永続化する？
     - MySQL Provider - MySQLでアクターの状態を永続化する方法は？
     - PostgreSQL Provider - PostgreSQLでアクターの状態を永続化する方法は？

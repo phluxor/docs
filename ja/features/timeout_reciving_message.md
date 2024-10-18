@@ -1,10 +1,10 @@
 # Timeout for receiving messages
 
-By calling the `setReceiveTimeout` method, you can set a timeout for processing before replying to a message.
+`setReceiveTimeout` メソッドを呼び出すことで、メッセージに応答する前の処理にタイムアウトを設定できます。
 
-If the timeout is reached, the actor will receive a `Phluxor\ActorSystem\Message\ReceiveTimeout` message.
+タイムアウトに達すると、アクターは `Phluxor\ActorSystem\Message\ReceiveTimeout` メッセージを受信します。
 
-This message can be used to trigger a response to the timeout.
+このメッセージを使用してタイムアウトに対する応答をトリガーできます。
 
 ```php
 public function receive(ContextInterface $context): void
@@ -24,13 +24,14 @@ public function receive(ContextInterface $context): void
 
 ## Note
 
-that this timeout may insert a ReceiveTimeout message into the mailbox immediately after the message reaches the mailbox.
+このタイムアウトは、メッセージがメールボックスに到達した直後に  
+`ReceiveTimeout` メッセージをメールボックスに挿入する可能性があります。
 
-Once set, the receive timeout remains active.
+一度設定すると、受信タイムアウトは有効なままです。
 
-This means it will continue to occur repeatedly after periods of inactivity.
+つまり、非アクティブな期間の後も繰り返し発生し続けることになります。
 
-To turn off the timeout, pass `new \DateInterval('PT0S')` to `setReceiveTimeout`.
+タイムアウトをオフにするには、`setReceiveTimeout` に `new \DateInterval('PT0S')` を渡します。
 
 ```php
 public function receive(ContextInterface $context): void
@@ -54,11 +55,13 @@ public function receive(ContextInterface $context): void
 
 ## NoInfluence
 
-There is a way to send a message to an actor without resetting the receive timeout timer for messages that have no impact.
+受信タイムアウトタイマーに影響を与えないメッセージに対して、  
+タイムアウトをリセットせずにアクターにメッセージを送信する方法があります。
 
-To do this, implement the `Phluxor\ActorSystem\Message\NotInfluenceReceiveTimeoutInterface` in the message.
+これを行うには、  
+メッセージに `Phluxor\ActorSystem\Message\NotInfluenceReceiveTimeoutInterface` を実装します。
 
-example:
+例：
 
 ```php
 <?php
