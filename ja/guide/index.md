@@ -29,12 +29,13 @@
 - [Middleware](/ja/features/middleware.html) - ミドルウェアって何？
 - Reentrancy - 再入処理をどう扱う？
 - [Router](/ja/features/router.html) - メッセージをアクターにどうルーティングする？
-    - RoundRobin - ラウンドロビンルーティング
+    - [RoundRobin](/ja/features/round_robin.html) - ラウンドロビンルーティング
     - Random - ランダムルーティング
     - Broadcast - ブロードキャストルーティング
     - ConsistentHash - 一貫性ハッシュルーティング
 - [EventStream](/ja/features/eventstream.html) - イベントの発行と購読方法は？
 - Persistence - アクターの状態をどう永続化する？
+    - SQLite Provider - SQLiteでアクターの状態を永続化する方法は？
     - MySQL Provider - MySQLでアクターの状態を永続化する方法は？
     - PostgreSQL Provider - PostgreSQLでアクターの状態を永続化する方法は？
     - DynamoDB Provider - DynamoDBでアクターの状態を永続化する方法は？
